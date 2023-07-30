@@ -1,36 +1,38 @@
 <template>
   <form @submit.prevent>
     <h4>Create new post</h4>
-    <input
-      v-bind:value="post.title"
-      @input="post.title = $event.target.value"
-      type="text"
-      class="input"
-      name="title"
-      placeholder="Title"
-    />
-    <input
-      v-bind:value="post.description"
-      @input="post.description = $event.target.value"
-      type="text"
-      class="input"
-      name="description"
-      placeholder="Description"
-    />
-    <button class="btn" @click="createPost">Create</button>
+    <input v-bind:value="post.title" @input="post.title = $event.target.value" type="text" class="input" name="title"
+      placeholder="Title" />
+    <input v-bind:value="post.description" @input="post.description = $event.target.value" type="text" class="input"
+      name="description" placeholder="Description" />
+    <my-button class="btnCreate" @click="createPost">Create</my-button>
   </form>
 </template>
 
 <script>
+import MyButton from "@/components/UI/MyButton";
 export default {
-    data() {
-        return {
-            post: {
-                title: '',
-                description:  '',
-            }
-        }
+  components: {
+    MyButton
+  },
+  data() {
+    return {
+      post: {
+        title: '',
+        description: '',
+      }
     }
+  },
+  methods: {
+    createPost() {
+      this.post.id = Date.now();
+      this.$emit('create', this.post);
+      this.post = {
+        title: '',
+        description: '',
+      }
+    }
+  }
 };
 </script>
 
@@ -47,12 +49,7 @@ form {
   margin-top: 15px;
 }
 
-.btn {
-  margin-top: 15px;
-  padding: 10px 15px;
+.btnCreate {
   align-self: flex-end;
-  color: teal;
-  background: none;
-  border: 1px solid darkgreen;
 }
 </style>

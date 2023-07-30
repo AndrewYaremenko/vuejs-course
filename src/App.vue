@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <post-form />
-    <post-list :posts="posts"/>
+    <post-form @create="createPost" />
+    <post-list :posts="posts" />
   </div>
 </template>
 
@@ -36,23 +36,11 @@ export default {
           description: "Lorem ipsum dolor sit amet consectetur adipisicing.",
         },
       ],
-      title: "",
-      description: "",
     };
   },
   methods: {
-    createPost() {
-      const newPost = {
-        id: Date.now(),
-        title: this.title,
-        description: this.description,
-      };
-      this.posts.push(newPost);
-      this.title = "";
-      this.description = "";
-    },
-    inputDescription(event) {
-      this.description = event.target.value;
+    createPost(post) {
+      this.posts.push(post);
     },
   },
 };
