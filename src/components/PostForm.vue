@@ -1,10 +1,8 @@
 <template>
   <form @submit.prevent>
     <h4>Create new post</h4>
-    <my-input v-bind:value="post.title" @input="post.title = $event.target.value" type="text" class="input" name="title"
-      placeholder="Title" />
-    <my-input v-bind:value="post.description" @input="post.description = $event.target.value" type="text" class="input"
-      name="description" placeholder="Description" />
+    <my-input v-model="post.title" type="text" name="title" placeholder="Title" />
+    <my-input v-model="post.description" type="text" name="description" placeholder="Description" />
     <my-button class="btnCreate" @click="createPost">Create</my-button>
   </form>
 </template>
