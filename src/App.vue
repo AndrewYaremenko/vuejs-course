@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h1>Posts page</h1>
+    <input type="text" v-model.number="modificatorValue">
     <my-button @click="showDialog" style="margin-bottom: 25px;">Create post</my-button>
     <my-dialog v-model:show="dialogVisible">
       <post-form @create="createPost" />
@@ -41,6 +42,7 @@ export default {
         },
       ],
       dialogVisible: false,
+      modificatorValue: "",
     };
   },
   methods: {
